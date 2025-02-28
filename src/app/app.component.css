@@ -1,0 +1,167 @@
+/* Contenedor principal */
+.container {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+/* Área del juego: contenedor para la horca y el muñeco */
+.game-area {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 20px auto;
+}
+
+/* HORCA */
+.gallows {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 150px;
+  height: 250px;
+}
+
+/* Poste vertical */
+.vertical-post {
+  position: absolute;
+  left: 50px;
+  bottom: 50px;
+  width: 6px;
+  height: 200px;
+  background: black;
+}
+
+/* Viga horizontal */
+.horizontal-beam {
+  position: absolute;
+  left: 50px;
+  top: 0;
+  width: 80px;
+  height: 6px;
+  background: black;
+}
+
+/* Cuerda (colgando de la horca) */
+.rope {
+  position: absolute;
+  left: calc(50px + 80px - 3px);
+  top: 6px;
+  width: 2px;
+  height: 20px;
+  background: black;
+}
+
+/* MUÑECO */
+.hangman {
+  position: absolute;
+  left: calc(50px + 80px - 20px);
+  top: 26px;
+}
+
+/* Cabeza */
+.hangman .cabeza {
+  width: 40px;
+  height: 40px;
+  border: 3px solid black;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+/* Cuerpo */
+.hangman .cuerpo {
+  width: 6px;
+  height: 60px;
+  background: black;
+  margin: 0 auto;
+}
+
+/* Brazos */
+.hangman .brazo {
+  width: 40px;
+  height: 6px;
+  background: black;
+  position: absolute;
+  top: 60px;
+}
+
+.hangman .brazo.izquierdo {
+  left: -10px;
+  transform: rotate(-60deg);
+}
+
+.hangman .brazo.derecho {
+  right: -10px;
+  transform: rotate(60deg);
+}
+
+/* Piernas */
+.hangman .pierna {
+  width: 40px;
+  height: 6px;
+  background: black;
+  position: absolute;
+  top: 115px;
+}
+
+.hangman .pierna.izquierda {
+  left: -7px;
+  transform: rotate(-60deg);
+}
+
+.hangman .pierna.derecha {
+  right: -7px;
+  transform: rotate(60deg);
+}
+
+/* Mensaje de estado */
+.mensaje h2 {
+  color: blue;
+}
+
+/* Palabra oculta */
+.palabra {
+  font-size: 28px;
+  margin: 20px;
+  letter-spacing: 10px;
+}
+
+/* Teclado */
+.teclado button {
+  font-size: 18px;
+  margin: 5px;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: #ddd;
+  transition: 0.3s;
+}
+
+.teclado.disabled button {
+  cursor: not-allowed;
+}
+
+.teclado button:disabled {
+  opacity: 0.5;
+}
+
+.teclado button.correcto {
+  background-color: green;
+  color: white;
+}
+
+.teclado button.incorrecto {
+  background-color: red;
+  color: white;
+}
+
+/* Botón de reinicio */
+.reiniciar {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 18px;
+  background: blue;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
