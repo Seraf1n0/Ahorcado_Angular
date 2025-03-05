@@ -1,38 +1,91 @@
 <div class="container">
-  <div class="game-area">
-    <div class="gallows">
-      <div class="vertical-post"></div>
-      <div class="horizontal-beam"></div>
-      <div class="rope" *ngIf="intentos >= 1"></div>
+  <!-- Configuración de jugadores -->
+  <div *ngIf="!setupComplete" class="setup">
+    <h2>Ingrese nombres de jugadores</h2>
+    <form (ngSubmit)="iniciarPartida()">
+      <div>
+        <label>Jugador 1:</label>
+        <input type="text" [(ngModel)]="nombreJugador1" name="nombreJugador1" required>
+      </div>
+      <div>
+        <label>Jugador 2:</label>
+        <input type="text" [(ngModel)]="nombreJugador2" name="nombreJugador2" required>
+      </div>
+      <button type="submit">Iniciar Partida</button>
+    </form>
+  </div>
+
+  <div *ngIf="setupComplete">
+    <div class="jugadores-container">
+      <!-- Área del Jugador 1 -->
+      <div class="jugador" [class.activo]="turnoActual === 1">
+        <h3>{{ jugador1?.nombre }}</h3>
+        <p>Tiempo: {{ timerJugador1 }} s</p>
+        <p>Intentos: {{ intentos1 }} / {{ maxIntentos }}</p>
+        <div class="game-area">
+          <div class="gallows">
+            <div class="vertical-post"></div>
+            <div class="horizontal-beam"></div>
+            <div class="rope" *ngIf="intentos1 >= 1"></div>
+          </div>
+          <div class="hangman">
+            <div class="cabeza" *ngIf="intentos1 >= 1"></div>
+            <div class="cuerpo" *ngIf="intentos1 >= 2"></div>
+            <div class="brazo izquierdo" *ngIf="intentos1 >= 3"></div>
+            <div class="brazo derecho" *ngIf="intentos1 >= 4"></div>
+            <div class="pierna izquierda" *ngIf="intentos1 >= 5"></div>
+            <div class="pierna derecha" *ngIf="intentos1 >= 6"></div>
+          </div>
+        </div>
+        <div class="palabra">
+          <span *ngFor="let letra of palabraOculta1">{{ letra }}</span>
+        </div>
+      </div>
+
+      <!-- Área del Jugador 2 -->
+      <div class="jugador" [class.activo]="turnoActual === 2">
+        <h3>{{ jugador2?.nombre }}</h3>
+        <p>Tiempo: {{ timerJugador2 }} s</p>
+        <p>Intentos: {{ intentos2 }} / {{ maxIntentos }}</p>
+        <div class="game-area">
+          <div class="gallows">
+            <div class="vertical-post"></div>
+            <div class="horizontal-beam"></div>
+            <div class="rope" *ngIf="intentos2 >= 1"></div>
+          </div>
+          <div class="hangman">
+            <div class="cabeza" *ngIf="intentos2 >= 1"></div>
+            <div class="cuerpo" *ngIf="intentos2 >= 2"></div>
+            <div class="brazo izquierdo" *ngIf="intentos2 >= 3"></div>
+            <div class="brazo derecho" *ngIf="intentos2 >= 4"></div>
+            <div class="pierna izquierda" *ngIf="intentos2 >= 5"></div>
+            <div class="pierna derecha" *ngIf="intentos2 >= 6"></div>
+          </div>
+        </div>
+        <div class="palabra">
+          <span *ngFor="let letra of palabraOculta2">{{ letra }}</span>
+        </div>
+      </div>
     </div>
-    <div class="hangman">
-      <div class="cabeza" *ngIf="intentos >= 1"></div>
-      <div class="cuerpo" *ngIf="intentos >= 2"></div>
-      <div class="brazo izquierdo" *ngIf="intentos >= 3"></div>
-      <div class="brazo derecho" *ngIf="intentos >= 4"></div>
-      <div class="pierna izquierda" *ngIf="intentos >= 5"></div>
-      <div class="pierna derecha" *ngIf="intentos >= 6"></div>
+
+    <!-- Teclado virtual -->
+    <div class="teclado" [class.disabled]="gameOver">
+      <button *ngFor="let letra of abecedario"
+              [class.correcto]="(turnoActual === 1 ? letrasUsadas1.has(letra) : letrasUsadas2.has(letra)) && (turnoActual === 1 ? palabraJugador1.includes(letra) : palabraJugador2.includes(letra))"
+              [class.incorrecto]="(turnoActual === 1 ? letrasUsadas1.has(letra) : letrasUsadas2.has(letra)) && !(turnoActual === 1 ? palabraJugador1.includes(letra) : palabraJugador2.includes(letra))"
+              (click)="verificarLetra(letra)"
+              [disabled]="(turnoActual === 1 ? letrasUsadas1.has(letra) : letrasUsadas2.has(letra)) || gameOver">
+        {{ letra }}
+      </button>
     </div>
-  </div>
 
-  <div class="mensaje" *ngIf="mensaje">
-    <h2>{{ mensaje }}</h2>
-  </div>
+    <!-- Mensaje final -->
+    <div class="mensaje" *ngIf="gameOver">
+      <h2>{{ mensajeFinal }}</h2>
+      <p>{{ jugador1.nombre }}: {{ rondasGanadas1 }} aciertos, {{ totalTime1 }} s totales</p>
+      <p>{{ jugador2.nombre }}: {{ rondasGanadas2 }} aciertos, {{ totalTime2 }} s totales</p>
+    </div>
 
-  <div class="palabra">
-    <span *ngFor="let letra of palabraOculta">{{ letra }}</span>
+    <button class="reiniciar" (click)="reiniciarJuego()">Reiniciar</button>
   </div>
-
-  <div class="teclado" [class.disabled]="gameOver">
-    <button *ngFor="let letra of abecedario" 
-            [class.correcto]="letrasUsadas.has(letra) && palabra.includes(letra)"
-            [class.incorrecto]="letrasUsadas.has(letra) && !palabra.includes(letra)"
-            (click)="verificarLetra(letra)"
-            [disabled]="letrasUsadas.has(letra) || gameOver">
-      {{ letra }}
-    </button>
-  </div>
-
-  <!-- Botón para reiniciar el juego -->
-  <button class="reiniciar" (click)="reiniciarJuego()">Reiniciar</button>
 </div>

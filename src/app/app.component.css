@@ -4,12 +4,41 @@
   font-family: Arial, sans-serif;
 }
 
-/* Área del juego: contenedor para la horca y el muñeco */
+/* Configuración inicial */
+.setup {
+  margin-top: 50px;
+}
+
+.setup form div {
+  margin: 10px;
+}
+
+/* Contenedor de áreas de juego */
+.jugadores-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+/* Área de cada jugador */
+.jugador {
+  width: 45%;
+  border: 2px solid #ccc;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.jugador.activo {
+  border-color: blue;
+  box-shadow: 0 0 10px blue;
+}
+
+/* Área del juego (horca y muñeco) */
 .game-area {
   position: relative;
-  width: 300px;
-  height: 300px;
-  margin: 20px auto;
+  width: 200px;
+  height: 200px;
+  margin: 10px auto;
 }
 
 /* HORCA */
@@ -17,34 +46,31 @@
   position: absolute;
   left: 0;
   top: 0;
-  width: 150px;
-  height: 250px;
+  width: 100px;
+  height: 150px;
 }
 
-/* Poste vertical */
 .vertical-post {
   position: absolute;
-  left: 50px;
-  bottom: 50px;
+  left: 30px;
+  bottom: 0;
   width: 6px;
-  height: 200px;
+  height: 150px;
   background: black;
 }
 
-/* Viga horizontal */
 .horizontal-beam {
   position: absolute;
-  left: 50px;
+  left: 30px;
   top: 0;
-  width: 80px;
+  width: 50px;
   height: 6px;
   background: black;
 }
 
-/* Cuerda (colgando de la horca) */
 .rope {
   position: absolute;
-  left: calc(50px + 80px - 3px);
+  left: calc(30px + 50px - 3px);
   top: 6px;
   width: 2px;
   height: 20px;
@@ -54,11 +80,10 @@
 /* MUÑECO */
 .hangman {
   position: absolute;
-  left: calc(50px + 80px - 20px);
+  left: calc(30px + 50px - 20px);
   top: 26px;
 }
 
-/* Cabeza */
 .hangman .cabeza {
   width: 40px;
   height: 40px;
@@ -67,7 +92,6 @@
   margin: 0 auto;
 }
 
-/* Cuerpo */
 .hangman .cuerpo {
   width: 6px;
   height: 60px;
@@ -75,7 +99,6 @@
   margin: 0 auto;
 }
 
-/* Brazos */
 .hangman .brazo {
   width: 40px;
   height: 6px;
@@ -94,7 +117,6 @@
   transform: rotate(60deg);
 }
 
-/* Piernas */
 .hangman .pierna {
   width: 40px;
   height: 6px;
@@ -113,19 +135,18 @@
   transform: rotate(60deg);
 }
 
-/* Mensaje de estado */
-.mensaje h2 {
-  color: blue;
-}
-
 /* Palabra oculta */
 .palabra {
-  font-size: 28px;
-  margin: 20px;
-  letter-spacing: 10px;
+  font-size: 24px;
+  margin-top: 10px;
+  letter-spacing: 8px;
 }
 
 /* Teclado */
+.teclado {
+  margin-top: 20px;
+}
+
 .teclado button {
   font-size: 18px;
   margin: 5px;
@@ -153,6 +174,11 @@
 .teclado button.incorrecto {
   background-color: red;
   color: white;
+}
+
+/* Mensaje final */
+.mensaje h2 {
+  color: blue;
 }
 
 /* Botón de reinicio */
