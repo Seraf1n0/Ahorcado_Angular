@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HistoricoPartida } from '../models/historico-partida.model';
 import { CommonModule } from '@angular/common';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-historial',
@@ -11,12 +12,14 @@ import { CommonModule } from '@angular/common';
 export class HistorialComponent implements OnInit {
   historicoPartidas: HistoricoPartida[] = [];
 
+  constructor(private apiService: ApiService) {}
+
   ngOnInit(): void {
-    // Datos de prueba estáticos; en el futuro se cargarán de un JSON o API
-    this.historicoPartidas = [
-      new HistoricoPartida('Serafino', 'Manolo', 'Victoria', 'Manolo'),
-      new HistoricoPartida('ElChavo', 'Bryan', 'Victoria', 'ElChavo'),
-      new HistoricoPartida('Edutec', 'Dylantero', 'Empate', null)
-    ];
+    this.apiService.getHistorico().subscribe({
+      next: (res) => {
+        this.historicoPartidas = res.historico;
+      },
+      error: (err) => console.error('Error al obtener el historial', err)
+    });
   }
 }
