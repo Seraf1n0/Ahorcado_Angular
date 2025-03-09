@@ -4,5 +4,4 @@ export class Jugador {
       public tiempo: number = 0,
       public turnos: number = 0
     ) {}
-  }
-  
+}
