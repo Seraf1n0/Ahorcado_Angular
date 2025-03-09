@@ -9,7 +9,12 @@ import { Router } from '@angular/router';
 export class InicioComponent {
   constructor(private router: Router) {}
 
+  // Funciones para navegación a ambas partes del juego
   jugar() {
     this.router.navigate(['/juego']);
+  }
+
+  verHistorial() {
+    this.router.navigate(['/historial']);
   }
 }

@@ -1,0 +1,194 @@
+/* Contenedor principal */
+.container {
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Configuración inicial */
+  .setup {
+    margin-top: 50px;
+  }
+  
+  .setup form div {
+    margin: 10px;
+  }
+  
+  /* Contenedor de áreas de juego */
+  .jugadores-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  /* Área de cada jugador */
+  .jugador {
+    width: 45%;
+    border: 2px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .jugador.activo {
+    border-color: blue;
+    box-shadow: 0 0 10px blue;
+  }
+  
+  /* Área del juego (horca y muñeco) */
+  .game-area {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 10px auto;
+  }
+  
+  /* HORCA */
+  .gallows {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100px;
+    height: 150px;
+  }
+  
+  .vertical-post {
+    position: absolute;
+    left: 30px;
+    bottom: 0;
+    width: 6px;
+    height: 150px;
+    background: black;
+  }
+  
+  .horizontal-beam {
+    position: absolute;
+    left: 30px;
+    top: 0;
+    width: 50px;
+    height: 6px;
+    background: black;
+  }
+  
+  .rope {
+    position: absolute;
+    left: calc(30px + 50px - 3px);
+    top: 6px;
+    width: 2px;
+    height: 20px;
+    background: black;
+  }
+  
+  /* MUÑECO */
+  .hangman {
+    position: absolute;
+    left: calc(30px + 50px - 20px);
+    top: 26px;
+  }
+  
+  .hangman .cabeza {
+    width: 40px;
+    height: 40px;
+    border: 3px solid black;
+    border-radius: 50%;
+    margin: 0 auto;
+  }
+  
+  .hangman .cuerpo {
+    width: 6px;
+    height: 60px;
+    background: black;
+    margin: 0 auto;
+  }
+  
+  .hangman .brazo {
+    width: 40px;
+    height: 6px;
+    background: black;
+    position: absolute;
+    top: 60px;
+  }
+  
+  .hangman .brazo.izquierdo {
+    left: -10px;
+    transform: rotate(-60deg);
+  }
+  
+  .hangman .brazo.derecho {
+    right: -10px;
+    transform: rotate(60deg);
+  }
+  
+  .hangman .pierna {
+    width: 40px;
+    height: 6px;
+    background: black;
+    position: absolute;
+    top: 115px;
+  }
+  
+  .hangman .pierna.izquierda {
+    left: -7px;
+    transform: rotate(-60deg);
+  }
+  
+  .hangman .pierna.derecha {
+    right: -7px;
+    transform: rotate(60deg);
+  }
+  
+  /* Palabra oculta */
+  .palabra {
+    font-size: 24px;
+    margin-top: 10px;
+    letter-spacing: 8px;
+  }
+  
+  /* Teclado */
+  .teclado {
+    margin-top: 20px;
+  }
+  
+  .teclado button {
+    font-size: 18px;
+    margin: 5px;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: #ddd;
+    transition: 0.3s;
+  }
+  
+  .teclado.disabled button {
+    cursor: not-allowed;
+  }
+  
+  .teclado button:disabled {
+    opacity: 0.5;
+  }
+  
+  .teclado button.correcto {
+    background-color: green;
+    color: white;
+  }
+  
+  .teclado button.incorrecto {
+    background-color: red;
+    color: white;
+  }
+  
+  /* Mensaje final */
+  .mensaje h2 {
+    color: blue;
+  }
+  
+  /* Botón de reinicio */
+  .reiniciar {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  

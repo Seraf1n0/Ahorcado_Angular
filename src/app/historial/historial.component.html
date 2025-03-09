@@ -1,0 +1,11 @@
+<div class="historial-container">
+    <h2>Historial de Partidas</h2>
+    <div class="card" *ngFor="let partida of historicoPartidas; let i = index" [ngClass]="{'card-alt': i % 2 === 1}">
+      <p><strong>Jugador 1:</strong> {{ partida.jugador1 }}</p>
+      <p><strong>Jugador 2:</strong> {{ partida.jugador2 }}</p>
+      <p><strong>Resultado:</strong> {{ partida.resultado }}</p>
+      <p *ngIf="partida.ganador"><strong>Ganador:</strong> {{ partida.ganador }}</p>
+      <p *ngIf="!partida.ganador"><strong>Empate</strong></p>
+    </div>
+  </div>
+  
