@@ -1,16 +1,56 @@
 .inicio-container {
-    text-align: center;
-    margin-top: 100px;
-  }
-  
-  .inicio-container h1 {
-    font-size: 48px;
-    margin-bottom: 40px;
-  }
-  
-  .inicio-container button {
-    font-size: 24px;
-    padding: 10px 20px;
-    cursor: pointer;
-  }
-  
+  width: 90%;
+  height: 90vh;
+  margin: 20px auto;
+  padding: 30px;
+  border-radius: 12px;
+  background-image: url('/inicio-bg.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.inicio-container h1 {
+  font-size: 48px;
+  margin-bottom: 40px;
+  color: #2e2c2c;
+}
+
+.inicio-container button {
+  display: block;
+  width: 500px;
+  margin: 25px auto;
+  font-size: 35px;
+  height: 150px;
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #554d4d;
+  transition: background-color 0.3s ease;
+  animation: pulse 2s infinite;
+}
+
+.inicio-container button:first-of-type {
+  background-color: #ff6b6bdd;
+}
+
+.inicio-container button:first-of-type:hover {
+  background-color: #ff5252;
+}
+
+.inicio-container button:last-of-type {
+  background-color: #ffd93d;
+}
+
+.inicio-container button:last-of-type:hover {
+  background-color: #ffc107;
+}
+
+/* Animación de pulso */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+

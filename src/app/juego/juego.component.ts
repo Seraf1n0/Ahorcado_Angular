@@ -4,10 +4,11 @@ import { HistoricoPartida } from '../models/historico-partida.model';
 import { ApiService } from '../services/api.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-juego',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './juego.component.html',
   styleUrls: ['./juego.component.css']
 })

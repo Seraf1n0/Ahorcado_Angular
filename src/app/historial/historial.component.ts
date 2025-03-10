@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { HistoricoPartida } from '../models/historico-partida.model';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../services/api.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-historial',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './historial.component.html',
   styleUrls: ['./historial.component.css']
 })
